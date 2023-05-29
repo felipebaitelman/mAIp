@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GPT-4 API Chat</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
@@ -20,7 +20,10 @@
         />
         <button type="submit" id="submitBtn">Send</button>
       </form>
-      <div id="result"></div>
+      <!-- <div id="result"> </div> -->
+      <div id="seaborn-plot">
+        <img src="{{ plot_url }}" alt="Seaborn Plot">
+      </div>
     </div>
     <script src="{{ url_for('static', filename='js/index.js')}}"></script>
   </body>
