@@ -4,25 +4,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GPT-4 API Chat</title>
+    <title>GPT-4 Chart Creator</title>
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   </head>
   <body>
     <div class="chat-container">
-      <h1>GPT-4 API Chat</h1>
+      <h1>Chart Generator</h1>
       <form id="chat-form">
         <input
           type="text"
           id="user-input"
           name="user_input"
-          placeholder="Type your message..."
+          placeholder="Enter an indicator..."
         />
         <button type="submit" id="submitBtn">Send</button>
       </form>
       <!-- <div id="result"> </div> -->
       <div id="seaborn-plot">
         <img src="{{ plot_url }}" alt="Seaborn Plot">
+      </div>
+      <div class="spacer"></div>
+      <div id="powered-by">
+        <p>Powered by ChatGPT</p>
+        <img src="/static/openai_logo.png" alt="OpenAI Logo" class="openai-logo">
       </div>
     </div>
     <script src="{{ url_for('static', filename='js/index.js')}}"></script>
