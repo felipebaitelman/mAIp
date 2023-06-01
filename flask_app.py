@@ -7,7 +7,6 @@ import ast
 import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.font_manager as fm
-print(matplotlib.get_cachedir())
 from matplotlib import rcParams
 matplotlib.use('Agg')
 import base64
