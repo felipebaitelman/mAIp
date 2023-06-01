@@ -32,8 +32,6 @@ importlib-metadata==6.6.0
 importlib-resources==5.12.0
 inflection==0.5.1
 iniconfig==2.0.0
-intel-cmplr-lic-rt==2023.1.0
-intel-openmp==2023.1.0
 itsdangerous==2.1.2
 jedi==0.18.2
 Jinja2==3.1.2
