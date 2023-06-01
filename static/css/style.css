@@ -10,6 +10,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding-top: 40px;
 }
 
 .chat-container {
@@ -20,10 +21,17 @@ body {
     width: 80%;
     max-width: 600px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    padding-top: 20px;
 }
 
-input {
+input[type='text'], input[type='number'], select {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
 }
 
 h1 {
@@ -31,26 +39,64 @@ h1 {
     margin-bottom: 20px;
 }
 
+h2 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
 #chat-form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-#user-input {
-    flex-grow: 1;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
+#analysis-type {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin-bottom: 0px;
+    padding-left: 10px;
 }
 
+.radio-button {
+    margin-bottom: 5px;
+}
+
+input[type="radio"], label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+}
+
+.radio-button input[type="radio"] {
+    margin-right: 5px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.form-field, .form-group {
+  flex: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+
 #submitBtn {
+    align-self: stretch;
     background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
-    margin-left: 10px;
     cursor: pointer;
 }
 

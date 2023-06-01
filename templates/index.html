@@ -12,14 +12,53 @@
     <div class="chat-container">
       <h1>Chart Generator</h1>
       <form id="chat-form">
-        <input
-          type="text"
-          id="user-input"
-          name="user_input"
-          placeholder="Enter an indicator..."
-        />
-        <button type="submit" id="submitBtn">Send</button>
+          <h2>Analysis type</h2>
+          <div id="analysis-type">
+              <div class="radio-button">
+                  <input type="radio" id="time-series" name="analysis_type" value="time-series" checked>
+                  <label for="time-series">Time Series</label>
+              </div>
+              <div class="radio-button">
+                  <input type="radio" id="one-year" name="analysis_type" value="one-year">
+                  <label for="one-year">One Year Analysis</label>
+              </div>
+          </div>
+          <h2>Parameters</h2>
+          <div class="form-row">
+              <div class="form-field">
+                  <input type="text" id="indicator" name="indicator" placeholder="Enter an indicator..." />
+              </div>
+              <div class="form-field">
+                  <select id="chart-type" name="chart_type">
+                      <option value="">Select chart type</option>
+                      <option value="line">Line Chart</option>
+                      <option value="bar">Bar Chart</option>
+                  </select>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="form-field">
+                  <select id="region" name="region">
+                      <option value="">Select region</option>
+                      <option value="latin-america">Latin America</option>
+                      <option value="specific-country">Specific Country</option>
+                  </select>
+              </div>
+              <div class="form-field">
+                  <input type="text" id="country-input" name="country-input" placeholder="Enter country name" disabled/>
+              </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="number" id="year-start" name="year_start" placeholder="Year Start">
+            </div>
+            <div class="form-group">
+              <input type="number" id="year-end" name="year_end" placeholder="Year End" disabled>
+            </div>
+          </div>
+          <button type="submit" id="submitBtn">Send</button>
       </form>
+
       <!-- <div id="result"> </div> -->
       <div id="seaborn-plot">
         <img src="{{ plot_url }}" alt="Seaborn Plot">
