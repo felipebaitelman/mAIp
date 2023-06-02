@@ -34,33 +34,18 @@ def index():
 @app.route('/gpt4/chat', methods=['POST'])
 def gpt4_chat():
     user_input = request.get_json()['user_input']
-    session['user_input'] = user_input  # Save the user's input to the session
-    latin_american_countries = [
-        "Argentina",
-        "Bolivia",
-        "Brazil",
-        "Chile",
-        "Colombia",
-        "Costa Rica",
-        "Cuba",
-        "Dominican Republic",
-        "Ecuador",
-        "El Salvador",
-        "Guatemala",
-        "Haiti",
-        "Honduras",
-        "Mexico",
-        "Nicaragua",
-        "Panama",
-        "Paraguay",
-        "Peru",
-        "Puerto Rico",
-        "Uruguay",
-        "Venezuela"
-    ]
+    chart_type = request.get_json()['chart_type']
+    region = request.get_json()['region']
+    country = request.get_json()['country']
+    analysis_type = request.get_json()['analysis_type']
+    year_start = request.get_json()['year_start']
+    year_end = request.get_json()['year_end']
 
-    prompt = "Return text formatted as a python dictionary with the following countries: " + str(latin_american_countries) + \
-             " and an associated random integer between 1 and 100. Provide only the dictionary, not the code implementation."
+    print(user_input, chart_type, region, country, analysis_type, year_start, year_end)
+
+    session['user_input'] = user_input  # Save the user's input to the session
+
+    prompt = build_prompt(user_input, chart_type, region, country, analysis_type, year_start, year_end)
 
     messages = [{"role": "user", "content": prompt}]
 
@@ -71,7 +56,7 @@ def gpt4_chat():
         )
 
         content = response.choices[0].message["content"]
-
+        print(content)
     except RateLimitError:
         content = "The server is experiencing a high volume of requests. Please try again later."
 
@@ -91,7 +76,7 @@ def gpt4_plot():
     content = session.get('content', '{}')
     country_dict = ast.literal_eval(content)
     df = pd.DataFrame(list(country_dict.items()), columns=['Country', 'Value'])
-    df['Value'] = pd.to_numeric(df['Value'])
+    df['Value'] = df['Value'].apply(lambda x: float(x.strip('%')) if isinstance(x, str) and "%" in x else float(x))
 
     g = sns.catplot(data=df, x='Country', y='Value', kind="bar", height=7, aspect=1.5)
     g.set_xticklabels(rotation=45, horizontalalignment='right')
@@ -122,6 +107,21 @@ def gpt4_plot():
     plot_url = 'data:image/png;base64,{}'.format(plot_url)
     return jsonify(plot_url=plot_url)
 
+
+def build_prompt(user_input, chart_type, region, country, analysis_type, year_start, year_end):
+
+    prompt = ""
+
+    if analysis_type == "time-series":
+        prompt = "Return text formatted as a python dictionary, where keys are years between " +\
+            str(year_start) + " and " + str(year_end) + " and values represent " + user_input +\
+            " in " + country + " during that period."
+    elif analysis_type == "one-year":
+        prompt = "Return text formatted as a python dictionary, where keys are countries from " +\
+                 region + " and values represent " + user_input + " in " + str(year_start)
+
+    print(prompt)
+    return prompt
 
 
 if __name__ == '__main__':

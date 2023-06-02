@@ -10,9 +10,14 @@ window.onload = function () {
             let chartType = document.getElementById("chart-type").value;
             let region = document.getElementById("region").value;
             let countryInput = document.getElementById("country-input").value;
+            let analysisType = document.querySelector('input[name="analysis_type"]:checked').value;
+            let yearStart = document.getElementById("year-start").value
+            let yearEnd = document.getElementById("year-end").value
 
             // Only include the country input if the "specific-country" option is selected
-            let postData = (region === "specific-country") ? { user_input: userInput, chart_type: chartType, region: region, country: countryInput } : { user_input: userInput, chart_type: chartType, region: region };
+            let postData = (region === "specific-country")
+                ? { user_input: userInput, chart_type: chartType, region: region, country: countryInput, analysis_type: analysisType, year_start: yearStart, year_end: yearEnd }
+                : { user_input: userInput, chart_type: chartType, region: region, analysis_type: analysisType, year_start: yearStart, year_end: yearEnd };
 
             let url = '/gpt4/chat';
 
@@ -21,7 +26,7 @@ window.onload = function () {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ user_input: userInput }),
+                body: JSON.stringify(postData),
             })
                 .then((response) => response.json())
                 .then((data) => {
