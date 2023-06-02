@@ -16,11 +16,11 @@
           <div id="analysis-type">
               <div class="radio-button">
                   <input type="radio" id="time-series" name="analysis_type" value="time-series" checked>
-                  <label for="time-series">Time Series</label>
+                  <label for="time-series">Time Series (for observing time evolution in a single location)</label>
               </div>
               <div class="radio-button">
                   <input type="radio" id="one-year" name="analysis_type" value="one-year">
-                  <label for="one-year">One Year Analysis</label>
+                  <label for="one-year">One Year Analysis (for comparing multiple locations in a single year)</label>
               </div>
           </div>
           <h2>Parameters</h2>
@@ -31,7 +31,7 @@
               <div class="form-field">
                   <select id="chart-type" name="chart_type">
                       <option value="">Select chart type</option>
-                      <option value="line">Line Chart</option>
+                      <!-- <option value="line">Line Chart</option> -->
                       <option value="bar">Bar Chart</option>
                   </select>
               </div>
@@ -41,6 +41,11 @@
                   <select id="region" name="region">
                       <option value="">Select region</option>
                       <option value="latin-america">Latin America</option>
+                      <option value="europe">Europe</option>
+                      <option value="north-america">North America</option>
+                      <option value="asia">Asia</option>
+                      <option value="africa">Africa</option>
+                      <option value="oceania">Oceania</option>
                       <option value="specific-country">Specific Country</option>
                   </select>
               </div>
@@ -63,6 +68,7 @@
       <div id="seaborn-plot">
         <img src="{{ plot_url }}" alt="Seaborn Plot">
       </div>
+      <div id="error-message" class="error-message"></div> <!-- Add an error message element -->
       <div class="spacer"></div>
       <div id="powered-by">
         <p>Powered by ChatGPT</p>
