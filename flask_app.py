@@ -77,9 +77,11 @@ def gpt4_plot():
 
     try:
         country_dict = ast.literal_eval(content)
+        if not isinstance(country_dict, dict):
+            raise ValueError("Parsed content is not a dictionary.")
     except (ValueError, SyntaxError) as e:
         # Handle the parsing error and return an error response
-        error_message = "Failed to parse content: {}".format(str(e))
+        error_message = "Sorry! It's not possible to convert ChatGPT's answer to a chart..."
         return jsonify(error=True, message=error_message)
 
     df = pd.DataFrame(list(country_dict.items()), columns=['Country', 'Value'])

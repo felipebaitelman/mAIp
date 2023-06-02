@@ -4,7 +4,8 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
+
+    background-color: #e0f7fa; /* This is light blue */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,4 +156,9 @@ input[type="radio"], label {
 #powered-by img {
     height: 20px;
     margin-left: 10px;
+}
+
+.error-message {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
 }
